@@ -1,0 +1,41 @@
+<form [formGroup]="equipoForm">
+  <div class="form-row">
+    <mat-form-field>
+      <input matInput formControlName="nombre" placeholder="Nombre">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="estadio" placeholder="Estadio">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field>
+      <input matInput formControlName="sitioWeb" placeholder="Sitio Web">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="nacionalidad" placeholder="Nacionalidad">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field>
+      <input matInput [matDatepicker]="fechaPicker" placeholder="Seleccionar fecha" formControlName="fundacion">
+      <mat-datepicker-toggle matSuffix [for]="fechaPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fechaPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="entrenador" placeholder="Entrenador">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field>
+      <input matInput formControlName="capacidad" placeholder="Capacidad">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="valor" placeholder="Valor">
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="guardarEquipo()">Guardar</button>
+</form>

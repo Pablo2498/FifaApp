@@ -1,0 +1,98 @@
+
+<div class="container">
+  <div class="search-container">
+    <form [formGroup]="searchForm" class="search-form">
+      <mat-form-field>
+        <input matInput placeholder="Id" formControlName="id">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="fechaDePicker" placeholder="Fecha de" formControlName="fechaDe">
+        <mat-datepicker-toggle matSuffix [for]="fechaDePicker"></mat-datepicker-toggle>
+        <mat-datepicker #fechaDePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="fechaHastaPicker" placeholder="Fecha hasta" formControlName="fechaHasta">
+        <mat-datepicker-toggle matSuffix [for]="fechaHastaPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fechaHastaPicker></mat-datepicker>
+      </mat-form-field>
+      <button mat-button color="primary" (click)="loadTeams()">Buscar</button>
+      <button mat-button color="primary" (click)="resetTeams()">Resetear</button>
+      <button mat-raised-button color="primary" class="add-button" (click)="addTeam()">Agregar Equipo</button>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="teams" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let team"> {{ team.id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let team"> {{ team.nombre }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="estadio">
+        <th mat-header-cell *matHeaderCellDef> Estadio </th>
+        <td mat-cell *matCellDef="let team"> {{ team.estadio }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sitioWeb">
+        <th mat-header-cell *matHeaderCellDef> Sitio Web </th>
+        <td mat-cell *matCellDef="let team"> {{ team.sitioWeb }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nacionalidad">
+        <th mat-header-cell *matHeaderCellDef> Nacionalidad </th>
+        <td mat-cell *matCellDef="let team"> {{ team.nacionalidad }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fundacion">
+        <th mat-header-cell *matHeaderCellDef> Fundacion </th>
+        <td mat-cell *matCellDef="let team"> {{ team.fundacion }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="entrenador">
+        <th mat-header-cell *matHeaderCellDef> Entrenador </th>
+        <td mat-cell *matCellDef="let team"> {{ team.entrenador }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="capacidad">
+        <th mat-header-cell *matHeaderCellDef> Capacidad </th>
+        <td mat-cell *matCellDef="let team"> {{ team.capacidad }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let team"> {{ team.valor }} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let team">
+          <button mat-icon-button color="primary" (click)="editTeam(team)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteTeam(team.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    [length]="teamsLenght"
+    [pageSize]="paginacion.pageSize"
+    [pageIndex]="paginacion.pageIndex"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+</div>
+
+

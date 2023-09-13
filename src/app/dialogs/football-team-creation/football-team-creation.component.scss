@@ -1,0 +1,22 @@
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+button.mat-raised-button {
+  margin-top: 16px;
+}
+
+.mat-form-field-label {
+  transform: translateY(-10px) scale(0.75);
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.form-row .mat-form-field {
+  width: calc(50% - 8px);
+}
